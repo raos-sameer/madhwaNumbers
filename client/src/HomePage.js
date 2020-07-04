@@ -12,7 +12,7 @@ class HomePage extends React.Component {
   };
 
   async getQuestionList() {
-    const response = await fetch("http://localhost:8080/api/faqQuestionList");
+    const response = await fetch("/api/faqQuestionList");
     const body = await response.json();
     this.setState({
       list: body,
