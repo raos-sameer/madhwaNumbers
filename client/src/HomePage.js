@@ -54,9 +54,7 @@ class HomePage extends React.Component {
     this.getAnswer(code);
   };
   async getAnswer(code) {
-    const response = await fetch(
-      "http://localhost:8080/api/faqSpecificAnswer?code=" + code
-    );
+    const response = await fetch("/api/faqSpecificAnswer?code=" + code);
     const body = await response.json();
 
     this.setState({
