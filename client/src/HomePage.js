@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { ListGroup, ListGroupItem, Container, Row, Col } from "reactstrap";
+import { ListGroupItem } from "reactstrap";
 import DetailedPage from "./DetailedPage";
 import "./App.css";
 
@@ -8,18 +8,25 @@ import AppMenu from "./AppMenu";
 
 class HomePage extends React.Component {
   state = {
-    list: [],
+    questionList: [],
+    answer: [],
     isLoading: true,
+    showDetails: false,
+  };
+  componentDidMount = () => {
+    this.getQuestionList();
   };
 
   async getQuestionList() {
     const response = await fetch("/api/faqQuestionList");
     const body = await response.json();
+
     this.setState({
-      list: body,
+      questionList: body,
       isLoading: false,
     });
   }
+
   displayList = (questionList) => {
     if (questionList.length < 1) return null;
 
@@ -27,21 +34,43 @@ class HomePage extends React.Component {
       <div className="faq_blocks">
         <ListGroupItem
           key={index}
-          value={faq.code}
+          data-id={faq.code}
           color="success"
           tag="a"
-          href="/detail"
+          href=""
+          onClick={this.showDetails.bind(this)}
         >
           {faq.question}
         </ListGroupItem>
       </div>
     ));
   };
-  componentDidMount = () => {
-    this.getQuestionList();
+  showDetails = (event) => {
+    event.preventDefault();
+    const code = event.currentTarget.dataset.id;
+    this.setState({
+      isLoading: true,
+    });
+    this.getAnswer(code);
   };
+  async getAnswer(code) {
+    const response = await fetch(
+      "http://localhost:8080/api/faqSpecificAnswer?code=" + code
+    );
+    const body = await response.json();
+
+    this.setState({
+      questionList: body,
+      isLoading: false,
+      showDetails: true,
+      answer: body[0] && body[0].category,
+    });
+
+    //this.showAnswer();
+  }
+
   render() {
-    const { isLoading, list } = this.state;
+    const { isLoading, questionList, showDetails, answer } = this.state;
     if (isLoading) {
       return <div> Loading....</div>;
     }
@@ -49,16 +78,11 @@ class HomePage extends React.Component {
       <div>
         <AppMenu></AppMenu>
         <p />
-        <Container>
-          <Row>
-            <Col sm={{ size: "auto", offset: 1 }}>
-              <ListGroup>{this.displayList(list)}</ListGroup>
-            </Col>
-            <Col sm={{ size: "auto", offset: 1 }}>
-              .col-sm-auto .offset-sm-1
-            </Col>
-          </Row>
-        </Container>
+        <DetailedPage
+          displayList={this.displayList(questionList)}
+          showDetails={showDetails}
+          showAnswer={answer}
+        ></DetailedPage>
       </div>
     );
   }

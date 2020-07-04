@@ -1,20 +1,70 @@
-import React from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
-
-import AppMenu from "./AppMenu";
+import React, { useState } from "react";
+import {
+  ListGroup,
+  Alert,
+  Container,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+  Col,
+} from "reactstrap";
+import classnames from "classnames";
+import "./App.css";
 const DetailedPage = (props) => {
   console.log("Props::", props);
+  const showAnswer = () => {
+    console.log("answer", props.showAnswer);
+    const answer = props.showAnswer;
+    return answer.map((category, index) => (
+      <div>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({
+                active: activeTab === JSON.stringify(index),
+              })}
+              onClick={() => {
+                toggle(JSON.stringify(index));
+              }}
+            >
+              {category.title}
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId={JSON.stringify(index)}>
+            <Row>
+              <Col sm="12">
+                {category.subCategory.map((eachSubCategory, index) => (
+                  <div className="SubCategory">
+                    <Alert color="primary">{eachSubCategory.itemName}</Alert>
+                  </div>
+                ))}
+              </Col>
+            </Row>
+          </TabPane>
+        </TabContent>
+      </div>
+    ));
+  };
+  const [activeTab, setActiveTab] = useState("1");
+
+  const toggle = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
   return (
-    <div>
-      <AppMenu></AppMenu>
-      <p />
-      <h3>Buttons </h3>
-      <ListGroup>
-        <ListGroupItem color="success" a href="/detail">
-          Cras justo odio
-        </ListGroupItem>
-      </ListGroup>
-    </div>
+    <Container>
+      <Row>
+        <Col sm={{ size: "auto", offset: 1 }}>
+          <ListGroup>{props.displayList}</ListGroup>
+        </Col>
+
+        {props.showDetails && showAnswer()}
+      </Row>
+    </Container>
   );
 };
 

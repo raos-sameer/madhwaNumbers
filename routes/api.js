@@ -26,4 +26,16 @@ router.get("/faqQuestionList", (req, res) => {
     });
 });
 
+router.get("/faqSpecificAnswer/", (req, res) => {
+  FaqAnswer.find({
+    code: req.query.code,
+  })
+    .then((data) => {
+      console.log("Data1 :", data);
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+});
 module.exports = router;

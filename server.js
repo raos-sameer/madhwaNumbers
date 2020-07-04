@@ -7,9 +7,9 @@ var cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const MONGO_URI =
+const MONGO_QUESTION_LIST_URI =
   "mongodb://admin:admin@mernprojectcluster-shard-00-00-8xsck.gcp.mongodb.net:27017,mernprojectcluster-shard-00-01-8xsck.gcp.mongodb.net:27017,mernprojectcluster-shard-00-02-8xsck.gcp.mongodb.net:27017/faqApp?ssl=true&replicaSet=MernProjectCluster-shard-0&authSource=admin&retryWrites=true&w=majority";
-mongoose.connect(process.env.MONGODB_URI || MONGO_URI, {
+mongoose.connect(process.env.MONGODB_URI || MONGO_QUESTION_LIST_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
