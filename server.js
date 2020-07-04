@@ -29,6 +29,10 @@ app.use("/api/", routes);
 app.use("/faq/", faqRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+  });
 }
 app.listen(PORT, console.log(`Server running on ${PORT}`));
