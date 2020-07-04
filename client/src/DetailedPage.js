@@ -56,7 +56,7 @@ const DetailedPage = (props) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
   return (
-    <Container>
+    <div className="app">
       <Row>
         <Col sm={{ size: "auto", offset: 1 }}>
           <ListGroup>{props.displayList}</ListGroup>
@@ -64,7 +64,7 @@ const DetailedPage = (props) => {
 
         {props.showDetails && showAnswer()}
       </Row>
-    </Container>
+    </div>
   );
 };
 

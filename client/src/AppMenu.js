@@ -6,17 +6,17 @@ class AppMenu extends Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Expense Tracker Application</NavbarBrand>
+          <NavbarBrand href="/">Tatwa Information</NavbarBrand>
 
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/categories">Categories</NavLink>
+              <NavLink href="/games">Games</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/expenses">Expenses</NavLink>
+              <NavLink href="/others">Other Information</NavLink>
             </NavItem>
           </Nav>
         </Navbar>
