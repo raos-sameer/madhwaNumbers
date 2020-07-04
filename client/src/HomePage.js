@@ -37,7 +37,7 @@ class HomePage extends React.Component {
     return <div>Sameer is here</div>;
   };
   componentDidMount = () => {
-    //this.getQuestionList();
+    this.getQuestionList();
   };
   render() {
     const { isLoading, list } = this.state;
