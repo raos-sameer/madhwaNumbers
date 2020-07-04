@@ -5,8 +5,8 @@ const FaqList = require("../models/faqList");
 //Routes
 router.get("/saveQuestionList", (req, res) => {
   const data = {
-    question: "Madhacharya's books",
-    code: "madhwaBooks",
+    question: "Taaratamya Krama",
+    code: "taaratamya",
   };
   const newFaqQuestion = new FaqList(data);
   newFaqQuestion.save((error) => {

@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { ListGroup, ListGroupItem, Button } from "reactstrap";
+import { ListGroup, ListGroupItem, Container, Row, Col } from "reactstrap";
 import DetailedPage from "./DetailedPage";
+import "./App.css";
 
 import AppMenu from "./AppMenu";
 
@@ -20,21 +21,21 @@ class HomePage extends React.Component {
     });
   }
   displayList = (questionList) => {
-    if (questionList.length) return null;
+    if (questionList.length < 1) return null;
 
-    console.log("questionList:", questionList);
     return questionList.map((faq, index) => (
-      <div>
-        <ListGroupItem color="success" tag="a" href="/detail">
+      <div className="faq_blocks">
+        <ListGroupItem
+          key={index}
+          value={faq.code}
+          color="success"
+          tag="a"
+          href="/detail"
+        >
           {faq.question}
         </ListGroupItem>
       </div>
     ));
-  };
-  redirectPage = (event) => {
-    event.preventDefault();
-    console.log(event.target);
-    return <div>Sameer is here</div>;
   };
   componentDidMount = () => {
     this.getQuestionList();
@@ -44,26 +45,20 @@ class HomePage extends React.Component {
     if (isLoading) {
       return <div> Loading....</div>;
     }
-    console.log(list);
     return (
       <div>
         <AppMenu></AppMenu>
         <p />
-        <h3>Buttons </h3>
-        <ListGroup>
-          {list.map((faq) => (
-            <Button
-              key={faq.code}
-              value={faq.code}
-              color="primary"
-              size="lg"
-              block
-              onClick={this.redirectPage.bind(this)}
-            >
-              {faq.question}
-            </Button>
-          ))}
-        </ListGroup>
+        <Container>
+          <Row>
+            <Col sm={{ size: "auto", offset: 1 }}>
+              <ListGroup>{this.displayList(list)}</ListGroup>
+            </Col>
+            <Col sm={{ size: "auto", offset: 1 }}>
+              .col-sm-auto .offset-sm-1
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
