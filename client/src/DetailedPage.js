@@ -14,12 +14,11 @@ import {
 import classnames from "classnames";
 import "./App.css";
 const DetailedPage = (props) => {
-  console.log("Props::", props);
   const showAnswer = () => {
     console.log("answer", props.showAnswer);
     const answer = props.showAnswer;
     return answer.map((category, index) => (
-      <div>
+      <div className="detailedAnswer">
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -61,7 +60,6 @@ const DetailedPage = (props) => {
         <Col sm={{ size: "auto", offset: 1 }}>
           <ListGroup>{props.displayList}</ListGroup>
         </Col>
-
         {props.showDetails && showAnswer()}
       </Row>
     </div>

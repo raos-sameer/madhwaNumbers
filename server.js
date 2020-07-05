@@ -25,9 +25,12 @@ app.use(morgan("tiny"));
 // Router
 const routes = require("./routes/api");
 const faqRoutes = require("./routes/faq");
+const saveGameRoutes = require("./routes/game");
+const findGameRoutes = require("./routes/memory");
 app.use("/api/", routes);
 app.use("/faq/", faqRoutes);
-
+app.use("/memory/", saveGameRoutes);
+app.use("/memory/", findGameRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 

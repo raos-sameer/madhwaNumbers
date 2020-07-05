@@ -1,5 +1,5 @@
 .app {
-  margin-left: -7%;
+  margin-left: 0%;
 }
 
 .faq_blocks {
@@ -7,4 +7,8 @@
 }
 .SubCategory {
   margin-top: 10%;
+}
+.gameWidth {
+  margin-left: 10%;
+  margin-right: 50%;
 }
