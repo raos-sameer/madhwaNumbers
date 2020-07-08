@@ -1,53 +1,44 @@
 import React, { useState } from "react";
-import {
-  ListGroup,
-  Alert,
-  Container,
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-  Col,
-} from "reactstrap";
-import classnames from "classnames";
+import { ListGroup, Row, Col } from "reactstrap";
 import "./App.css";
 const DetailedPage = (props) => {
+  const state = {
+    showAnswerDetails: true,
+    subCategory: [],
+  };
   const showAnswer = () => {
     console.log("answer", props.showAnswer);
     const answer = props.showAnswer;
+    //state.showAnswerDetails = false;
     return answer.map((category, index) => (
-      <div className="detailedAnswer">
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({
-                active: activeTab === JSON.stringify(index),
-              })}
-              onClick={() => {
-                toggle(JSON.stringify(index));
-              }}
-            >
-              {category.title}
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId={JSON.stringify(index)}>
-            <Row>
-              <Col sm="12">
-                {category.subCategory.map((eachSubCategory, index) => (
-                  <div className="SubCategory">
-                    <Alert color="primary">{eachSubCategory.itemName}</Alert>
-                  </div>
-                ))}
-              </Col>
-            </Row>
-          </TabPane>
-        </TabContent>
-      </div>
+      <a
+        href=""
+        key={index}
+        value={category.title}
+        onClick={(event) => {
+          event.preventDefault();
+          handleClick(category);
+        }}
+      >
+        {category.title}
+      </a>
     ));
+  };
+  const handleClick = (category) => {
+    state.showAnswerDetails = false;
+    console.log(category);
+    document.getElementById("DetailedAnswer").hidden = false;
+    document.getElementById("DetailedAnswerTitle").hidden = false;
+    document.getElementById("DetailedAnswerTitle").innerHTML =
+      "<div><h1>" + category.title + "</h1></div>";
+    document.getElementById(
+      "DetailedAnswer"
+    ).innerHTML = category.subCategory.map(
+      (eachSubCategory) =>
+        '<div className="detailed"><h3>' +
+        eachSubCategory.itemName +
+        "</h3><br/></div>"
+    );
   };
   const [activeTab, setActiveTab] = useState("1");
 
@@ -60,7 +51,17 @@ const DetailedPage = (props) => {
         <Col sm={{ size: "auto", offset: 1 }}>
           <ListGroup>{props.displayList}</ListGroup>
         </Col>
-        {props.showDetails && showAnswer()}
+        <div className="scrollmenu">{props.showDetails && showAnswer()}</div>
+        <div
+          id="DetailedAnswerTitle"
+          className="detailedTitle"
+          hidden={state.showAnswerDetails}
+        ></div>
+        <div
+          id="DetailedAnswer"
+          className="detailed"
+          hidden={state.showAnswerDetails}
+        ></div>
       </Row>
     </div>
   );

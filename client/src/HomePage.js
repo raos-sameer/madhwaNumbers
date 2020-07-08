@@ -31,7 +31,7 @@ class HomePage extends React.Component {
     if (questionList.length < 1) return null;
 
     return questionList.map((faq, index) => (
-      <div className="faq_blocks">
+      <div key={index} className="faq_blocks">
         <ListGroupItem
           key={index}
           data-id={faq.code}
@@ -80,6 +80,8 @@ class HomePage extends React.Component {
           displayList={this.displayList(questionList)}
           showDetails={showDetails}
           showAnswer={answer}
+          questionList={questionList}
+          showAnswerDetails={false}
         ></DetailedPage>
       </div>
     );
