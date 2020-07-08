@@ -30,12 +30,12 @@ const DetailedPage = (props) => {
     document.getElementById("DetailedAnswer").hidden = false;
     document.getElementById("DetailedAnswerTitle").hidden = false;
     document.getElementById("DetailedAnswerTitle").innerHTML =
-      "<div><h1>" + category.title + "</h1></div>";
+      "<div><p/><h1>" + category.title + "</h1></div>";
     document.getElementById(
       "DetailedAnswer"
     ).innerHTML = category.subCategory.map(
       (eachSubCategory) =>
-        '<div className="detailed"><h3>' +
+        '<div className="detailed"><p/><h3>' +
         eachSubCategory.itemName +
         "</h3><br/></div>"
     );
