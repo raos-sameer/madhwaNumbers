@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
 import "../App.css";
-import { Button } from "reactstrap";
+import "./MemoryGame.css";
+import { Button, Row, Col } from "reactstrap";
 import AppMenu from "../common/AppMenu";
 
-class GamesPage extends React.Component {
+class MemoryGame extends React.Component {
   state = {
     questionAnswer: [],
     duplicateQuestionAnswer: [],
@@ -82,7 +83,6 @@ class GamesPage extends React.Component {
         >
           {question}
         </Button>
-        <p />
       </div>
     ));
   };
@@ -126,12 +126,11 @@ class GamesPage extends React.Component {
   };
   render() {
     return (
-      <div>
-        <AppMenu></AppMenu>
-        {this.displayMatrix()}
+      <div className="arrangeButtons">
+        <Row>{this.displayMatrix()}</Row>
       </div>
     );
   }
 }
 
-export default GamesPage;
+export default MemoryGame;

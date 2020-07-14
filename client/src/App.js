@@ -1,7 +1,7 @@
 import React from "react";
 import HomePage from "./landing/HomePage";
 import DetailedPage from "./landing/DetailedPage";
-import GamesPage from "./games/GamesPage";
+import GameMenu from "./games/GameMenu";
 import OtherPage from "./OtherPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact={true} component={HomePage} />
             <Route path="/detail" exact={true} component={DetailedPage} />
-            <Route path="/games" exact={true} component={GamesPage} />
+            <Route path="/games" exact={true} component={GameMenu} />
             <Route path="/others" exact={true} component={OtherPage} />
           </Switch>
         </Router>
