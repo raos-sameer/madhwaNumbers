@@ -71,7 +71,7 @@ class MemoryGame extends React.Component {
     const { duplicateQuestionAnswer, buttonColor } = this.state;
     const me = this;
     return duplicateQuestionAnswer.map((question, index) => (
-      <div>
+      <div className="btn-arrange">
         <Button
           color={buttonColor[index]}
           key={index}
