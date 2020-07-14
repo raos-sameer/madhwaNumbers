@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ListGroup, Row, Col } from "reactstrap";
-import "./App.css";
+import "../App.css";
 const DetailedPage = (props) => {
   const state = {
     showAnswerDetails: true,

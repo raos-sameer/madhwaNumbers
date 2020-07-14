@@ -1,7 +1,7 @@
 import React from "react";
-import HomePage from "./HomePage";
-import DetailedPage from "./DetailedPage";
-import GamesPage from "./GamesPage";
+import HomePage from "./landing/HomePage";
+import DetailedPage from "./landing/DetailedPage";
+import GamesPage from "./games/GamesPage";
 import OtherPage from "./OtherPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends React.Component {
