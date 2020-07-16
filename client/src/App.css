@@ -15,6 +15,7 @@
 .scrollmenu {
   background-color: rgb(59, 151, 51);
   overflow: auto;
+  height: 10%;
   white-space: nowrap;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .detailed {
-  width: auto;
+  width: 50%;
   background-color: lightblue;
   padding: 10px;
   border: 5px solid gray;
@@ -41,6 +42,7 @@
 }
 .detailedTitle {
   margin: 0 auto;
+  display: inline-block;
   margin-top: 2%;
   margin-right: 0%;
   color: rgb(89, 0, 255);

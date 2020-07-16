@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ListGroup, Row, Col } from "reactstrap";
+import { ListGroup, Row, Col, Container } from "reactstrap";
 import "../App.css";
 const DetailedPage = (props) => {
   const state = {
@@ -52,16 +52,19 @@ const DetailedPage = (props) => {
           <ListGroup>{props.displayList}</ListGroup>
         </Col>
         <div className="scrollmenu">{props.showDetails && showAnswer()}</div>
-        <div
-          id="DetailedAnswerTitle"
-          className="detailedTitle"
-          hidden={state.showAnswerDetails}
-        ></div>
-        <div
-          id="DetailedAnswer"
-          className="detailed"
-          hidden={state.showAnswerDetails}
-        ></div>
+        <Container>
+          <div
+            id="DetailedAnswerTitle"
+            className="detailedTitle"
+            hidden={state.showAnswerDetails}
+          ></div>
+
+          <div
+            id="DetailedAnswer"
+            className="detailed"
+            hidden={state.showAnswerDetails}
+          ></div>
+        </Container>
       </Row>
     </div>
   );
