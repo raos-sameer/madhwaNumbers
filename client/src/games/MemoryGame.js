@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
-import { Button, Row, Col } from "reactstrap";
+import { Button, Row, Col, Alert } from "reactstrap";
 import AppMenu from "../common/AppMenu";
 
 class MemoryGame extends React.Component {
@@ -10,21 +10,24 @@ class MemoryGame extends React.Component {
     questionAnswer: [],
     duplicateQuestionAnswer: [],
     openedCards: 0,
+    score: 0,
     previouslyOpenedCard: -1,
-    buttonColor: "info",
+    buttonColor: [],
+    winner: [],
+    showWinnerText: false,
   };
   componentDidMount = () => {
     const mapping = [
       {
-        question: ["Who is Ashwatthama", "Who is Shuka"],
+        question: ["Moola Roopa Of Ashwatthama", "Moola Roopa Of Shuka"],
         answer: "Rudra",
       },
       {
-        question: ["Bheema", "Hanuma"],
+        question: ["Moola Roopa Of Bheema", "Moola Roopa Of Hanuma"],
         answer: "Vaayu",
       },
       {
-        question: ["Who Killed Meghadoot Asur", "Sumitra's brother"],
+        question: ["Who Killed Meghadoot Asur", "Shatrughna's brother"],
         answer: "Lakshman",
       },
       {
@@ -75,6 +78,9 @@ class MemoryGame extends React.Component {
         <Button
           color={buttonColor[index]}
           key={index}
+          disabled={
+            buttonColor[index] === "warning" || buttonColor[index] === "success"
+          }
           value={index}
           onClick={(event) => {
             event.preventDefault();
@@ -89,13 +95,35 @@ class MemoryGame extends React.Component {
 
   changeBtnText = (index) => {
     let {
+      buttonColor,
+      duplicateQuestionAnswer,
+      questionAnswer,
+      score,
+    } = this.state;
+    buttonColor[index] = "warning";
+    score++;
+    duplicateQuestionAnswer[index] = questionAnswer[index].split(";")[0];
+
+    setTimeout(() => {
+      this.validate(index);
+    }, 2000);
+    this.setState({
+      buttonColor: buttonColor,
+      score: score,
+      duplicateQuestionAnswer: duplicateQuestionAnswer,
+    });
+  };
+  validate = (index) => {
+    let {
       duplicateQuestionAnswer,
       questionAnswer,
       openedCards,
       previouslyOpenedCard,
       buttonColor,
+      winner,
+      showWinnerText,
     } = this.state;
-    buttonColor[index] = "warning";
+
     if (openedCards === 1) {
       openedCards = 0;
       if (
@@ -104,6 +132,11 @@ class MemoryGame extends React.Component {
       ) {
         buttonColor[index] = "success";
         buttonColor[previouslyOpenedCard] = "success";
+        winner.push(index);
+        winner.push(previouslyOpenedCard);
+        if (winner.length === questionAnswer.length) {
+          showWinnerText = true;
+        }
         duplicateQuestionAnswer[index] = questionAnswer[index];
         duplicateQuestionAnswer[previouslyOpenedCard] =
           questionAnswer[previouslyOpenedCard];
@@ -122,12 +155,21 @@ class MemoryGame extends React.Component {
       duplicateQuestionAnswer: duplicateQuestionAnswer,
       previouslyOpenedCard: index,
       openedCards: openedCards,
+      showWinnerText: showWinnerText,
+      winner: winner,
     });
   };
   render() {
+    const { score, showWinnerText } = this.state;
     return (
       <div className="arrangeButtons">
+        <Row>Score: (No. of clicks): {score}</Row>
         <Row>{this.displayMatrix()}</Row>
+        {showWinnerText && (
+          <Row>
+            <Alert color="danger">Congratulations ---- Winner</Alert>
+          </Row>
+        )}
       </div>
     );
   }

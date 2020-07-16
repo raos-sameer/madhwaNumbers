@@ -35,6 +35,7 @@ class GameMenu extends React.Component {
                 >
                   Memory Game
                 </ListGroupItem>
+                <ListGroupItem>Find Odd Man Out --- Coming Soon</ListGroupItem>
               </ListGroup>
             </Col>
             {showMemoryGame && <MemoryGame></MemoryGame>}
