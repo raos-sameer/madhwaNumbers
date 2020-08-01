@@ -67,7 +67,6 @@ class MemoryGame extends React.Component {
       ranNums.push(nums[j]);
       nums.splice(j, 1);
     }
-    console.log(ranNums);
     return ranNums;
   };
   displayMatrix = () => {

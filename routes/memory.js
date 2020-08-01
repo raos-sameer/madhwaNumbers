@@ -6,7 +6,6 @@ router.get("/findMemory", (req, res) => {
   memoryGame
     .find({})
     .then((data) => {
-      console.log("Data :", data);
       res.json(data);
     })
     .catch((error) => {
@@ -15,10 +14,8 @@ router.get("/findMemory", (req, res) => {
 });
 
 router.get("/faqQuestionList", (req, res) => {
-  console.log("In this points");
   FaqList.find({})
     .then((data) => {
-      console.log("Data1 :", data);
       res.json(data);
     })
     .catch((error) => {
@@ -31,7 +28,6 @@ router.get("/faqSpecificAnswer/", (req, res) => {
     code: req.query.code,
   })
     .then((data) => {
-      console.log("Data1 :", data);
       res.json(data);
     })
     .catch((error) => {

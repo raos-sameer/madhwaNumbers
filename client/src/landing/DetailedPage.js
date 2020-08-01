@@ -7,9 +7,7 @@ const DetailedPage = (props) => {
     subCategory: [],
   };
   const showAnswer = () => {
-    console.log("answer", props.showAnswer);
     const answer = props.showAnswer;
-    //state.showAnswerDetails = false;
     return answer.map((category, index) => (
       <a
         href=""
@@ -26,7 +24,6 @@ const DetailedPage = (props) => {
   };
   const handleClick = (category) => {
     state.showAnswerDetails = false;
-    console.log(category);
     document.getElementById("DetailedAnswer").hidden = false;
     document.getElementById("DetailedAnswerTitle").hidden = false;
     document.getElementById("DetailedAnswerTitle").innerHTML =

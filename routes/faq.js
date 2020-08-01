@@ -5,8 +5,8 @@ const FaqList = require("../models/faqList");
 //Routes
 router.get("/saveQuestionList", (req, res) => {
   const data = {
-    question: "Famous Avatar",
-    code: "avatars",
+    question: "General Knowledge",
+    code: "gk",
   };
   const newFaqQuestion = new FaqList(data);
   newFaqQuestion.save((error) => {
@@ -19,8 +19,28 @@ router.get("/saveQuestionList", (req, res) => {
   res.json(data);
 });
 
-router.get("/saveAnswer", (req, res) => {
-  const data = {
+router.post("/saveAnswer", (req, res) => {
+  FaqAnswer.findOneAndUpdate(
+    { code: req.body.code },
+    {
+      $push: {
+        category: req.body.category,
+      },
+    }
+  )
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+});
+
+module.exports = router;
+
+/*
+
+const data = {
     question: "Famous Avatars",
     code: "avatars",
     category: [
@@ -71,15 +91,4 @@ router.get("/saveAnswer", (req, res) => {
       },
     ],
   };
-  const newFaqAnswer = new FaqAnswer(data);
-  newFaqAnswer.save((error) => {
-    if (error) {
-      console.log("Save not happened", error);
-    } else {
-      console.log("Save successful");
-    }
-  });
-  res.json(data);
-});
-
-module.exports = router;
+*/
