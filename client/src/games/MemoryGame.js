@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
-import { Button, Row, Alert } from "reactstrap";
+import { Button, Row, Col, Alert } from "reactstrap";
 
 class MemoryGame extends React.Component {
   state = {
@@ -41,7 +41,7 @@ class MemoryGame extends React.Component {
     let questionAnswer = [];
     const duplicateQuestionAnswer = [];
     const color = [];
-    mapping.map((clues, index) =>
+    mapping.map((clues) =>
       clues.question.map(
         (eachClue) => (
           questionAnswer.push(eachClue + ";" + clues.answer),
@@ -68,27 +68,34 @@ class MemoryGame extends React.Component {
     }
     return ranNums;
   };
+  // {this.includeButton(index, question)}
   displayMatrix = () => {
-    const { duplicateQuestionAnswer, buttonColor } = this.state;
-    const me = this;
+    const { duplicateQuestionAnswer } = this.state;
+
     return duplicateQuestionAnswer.map((question, index) => (
-      <div className="btn-arrange">
-        <Button
-          color={buttonColor[index]}
-          key={index}
-          disabled={
-            buttonColor[index] === "warning" || buttonColor[index] === "success"
-          }
-          value={index}
-          onClick={(event) => {
-            event.preventDefault();
-            me.changeBtnText(index);
-          }}
-        >
-          {question}
-        </Button>
-      </div>
+      <Col xs="6" key={index}>
+        <div className="btn-arrange">{this.includeButton(index, question)}</div>
+      </Col>
     ));
+  };
+  includeButton = (index, question) => {
+    const { buttonColor } = this.state;
+    return (
+      <Button
+        color={buttonColor[index]}
+        key={index}
+        disabled={
+          buttonColor[index] === "warning" || buttonColor[index] === "success"
+        }
+        value={index}
+        onClick={(event) => {
+          event.preventDefault();
+          this.changeBtnText(index);
+        }}
+      >
+        {question}
+      </Button>
+    );
   };
 
   changeBtnText = (index) => {
@@ -128,8 +135,7 @@ class MemoryGame extends React.Component {
         questionAnswer[index].split(";")[1] ===
         questionAnswer[previouslyOpenedCard].split(";")[1]
       ) {
-        buttonColor[index] = "success";
-        buttonColor[previouslyOpenedCard] = "success";
+        buttonColor[index] = buttonColor[previouslyOpenedCard] = "success";
         winner.push(index);
         winner.push(previouslyOpenedCard);
         if (winner.length === questionAnswer.length) {
@@ -139,10 +145,10 @@ class MemoryGame extends React.Component {
         duplicateQuestionAnswer[previouslyOpenedCard] =
           questionAnswer[previouslyOpenedCard];
       } else {
-        duplicateQuestionAnswer[index] = "Find Match";
-        duplicateQuestionAnswer[previouslyOpenedCard] = "Find Match";
-        buttonColor[index] = "info";
-        buttonColor[previouslyOpenedCard] = "info";
+        duplicateQuestionAnswer[index] = duplicateQuestionAnswer[
+          previouslyOpenedCard
+        ] = "Find Match";
+        buttonColor[index] = buttonColor[previouslyOpenedCard] = "info";
       }
     } else {
       openedCards++;
