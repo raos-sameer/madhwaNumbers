@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
-import { Button, Row, Col, Alert } from "reactstrap";
-import AppMenu from "../common/AppMenu";
+import { Button, Row, Alert } from "reactstrap";
 
 class MemoryGame extends React.Component {
   state = {

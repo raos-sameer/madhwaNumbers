@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "../App.css";
-import { Button, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import AppMenu from "../common/AppMenu";
 import MemoryGame from "./MemoryGame";
 

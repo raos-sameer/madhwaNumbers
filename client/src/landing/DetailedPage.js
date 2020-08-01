@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ListGroup, Row, Col, Container } from "reactstrap";
 import "../App.css";
 const DetailedPage = (props) => {
@@ -27,20 +27,12 @@ const DetailedPage = (props) => {
     document.getElementById("DetailedAnswer").hidden = false;
     document.getElementById("DetailedAnswerTitle").hidden = false;
     document.getElementById("DetailedAnswerTitle").innerHTML =
-      "<div><p/><h1>" + category.title + "</h1></div>";
+      "<h3>" + category.title + "</h3>";
     document.getElementById(
       "DetailedAnswer"
-    ).innerHTML = category.subCategory.map(
-      (eachSubCategory) =>
-        '<div className="detailed"><p/><h3>' +
-        eachSubCategory.itemName +
-        "</h3><br/></div>"
-    );
-  };
-  const [activeTab, setActiveTab] = useState("1");
-
-  const toggle = (tab) => {
-    if (activeTab !== tab) setActiveTab(tab);
+    ).innerHTML = category.subCategory
+      .map((eachSubCategory) => "<h5>" + eachSubCategory.itemName + "</h5>")
+      .join("");
   };
   return (
     <div className="app">

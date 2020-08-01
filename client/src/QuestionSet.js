@@ -7,10 +7,7 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Input,
-  FormFeedback,
-  Badge,
 } from "reactstrap";
 import AppMenu from "./common/AppMenu";
 //import { isValidLoginDetails } from "../common/validate";
@@ -92,7 +89,6 @@ class QuestionSet extends React.Component {
       });
   };
   render() {
-    let { items, categoryLength } = this.state;
     return (
       <div>
         <AppMenu></AppMenu>
