@@ -166,14 +166,17 @@ class MemoryGame extends React.Component {
   render() {
     const { score, showWinnerText } = this.state;
     return (
-      <div className="arrangeButtons">
-        <Row>Score: (No. of clicks): {score}</Row>
-        <Row>{this.displayMatrix()}</Row>
-        {showWinnerText && (
-          <Row>
-            <Alert color="danger">Congratulations ---- Winner</Alert>
-          </Row>
-        )}
+      <div>
+        <h3 className="header"> Memory Game</h3>
+        <div className="arrangeButtons">
+          <Row>Score: (No. of clicks): {score}</Row>
+          <Row>{this.displayMatrix()}</Row>
+          {showWinnerText && (
+            <Row>
+              <Alert color="danger">Congratulations ---- Winner</Alert>
+            </Row>
+          )}
+        </div>
       </div>
     );
   }
