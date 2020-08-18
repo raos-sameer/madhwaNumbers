@@ -15,29 +15,31 @@ class MemoryGame extends React.Component {
     winner: [],
     showWinnerText: false,
   };
-  componentDidMount = () => {
-    const mapping = [
-      {
-        question: ["Moola Roopa Of Ashwatthama", "Moola Roopa Of Shuka"],
-        answer: "Rudra",
-      },
-      {
-        question: ["Moola Roopa Of Bheema", "Moola Roopa Of Hanuma"],
-        answer: "Vaayu",
-      },
-      {
-        question: ["Who Killed Meghadoot Asur", "Shatrughna's brother"],
-        answer: "Lakshman",
-      },
-      {
-        question: ["Poorvashrama Name Vasudeva", "Paajaka"],
-        answer: "Madhwacharya",
-      },
-      {
-        question: ["Son of Satyavati Devi", "Veda vibhaaga Kartru"],
-        answer: "Vedavyaas",
-      },
+  initialise = () => {
+    var response = [
+      "Moola Roopa Of Ashwatthama;Moola Roopa Of Shuka;Rudra",
+      "Moola Roopa Of Bheema;Moola Roopa Of Hanuma;Vaayu",
+      "Who Killed Meghadoot Asur;Shatrughna's brother;Lakshman",
+      "Poorvashrama Name Vasudeva;Paajaka;Madhwacharya",
+      "Son of Satyavati Devi;Veda vibhaaga Kartru;Vedavyaas",
     ];
+    let mapping = [];
+
+    response.map((eachItem, index) => {
+      let question = [];
+      let answer = "";
+      question.push(eachItem.split(";")[0]);
+      question.push(eachItem.split(";")[1]);
+      answer = eachItem.split(";")[2];
+      mapping.push({
+        question: question,
+        answer: answer,
+      });
+    });
+    return mapping;
+  };
+  componentDidMount = () => {
+    const mapping = this.initialise();
     let questionAnswer = [];
     const duplicateQuestionAnswer = [];
     const color = [];

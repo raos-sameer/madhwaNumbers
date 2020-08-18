@@ -34,76 +34,39 @@ class OddManGame extends React.Component {
     });
   };
   initialise = () => {
-    return [
-      {
-        question: ["Yudhishthira1", "Bheema", "Arjuna", "Nakula", "Ravana"],
-        answer: "Ravana",
-        hint: "Yuga",
-      },
-      {
-        question: ["Prithvi2", "Jala", "Tejas", "Vaayu", "Grahana Indriya"],
-        hint: "5 Tanmaatras",
-        answer: "Grahana Indriya",
-      },
-      {
-        question: ["Shantanu", "Devaki", "Bheeshma", "Ganga Devi", "Devavrata"],
-        answer: "Devaki",
-        hint: "Pandu purvaja",
-      },
-      {
-        question: [
-          "Krishna",
-          "Muchukunda",
-          "Kaalyavana",
-          "Matsya",
-          "Ranachhoda",
-        ],
-        hint: "Bhagawat 10 Skanda",
-        answer: "Matsya",
-      },
-      {
-        question: [
-          "Arjuna",
-          "Drupada",
-          "Draupadi",
-          "Matsya-Bheda",
-          "Ghatotkacha",
-        ],
-        answer: "Ghatotkacha",
-        hint: "Swayamvara",
-      },
-      {
-        question: ["Ghatotkacha", "Hidimba", "Krishna", "Bheema", "Hidimbi"],
-        hint: "After Laakshaa Gruha",
-        answer: "Krishna",
-      },
-      {
-        question: [
-          "Virat Raja",
-          "Bheeshma-Pratijnya",
-          "Bheema as Cook",
-          "Bruhannala",
-          "Kichaka",
-        ],
-        answer: "Bheeshma-Pratijnya",
-        hint: "Ajnyaat-Vaas",
-      },
-      {
-        question: [
-          "Hanumaan",
-          "Sita",
-          "Chudamani",
-          "Kumbhakarna",
-          "Ashoka Vaatika",
-        ],
-        hint: "Sundarkaanda",
-        answer: "Kumbhakarna",
-      },
+    let response = [
+      "Yudhishthira;Bheema;Arjuna;Nakula;Ravana;Ravana;Yuga",
+      "Prithvi;Jala;Tejas;Vaayu;Grahana Indriya;5 Tanmaatras;Grahana Indriya",
+      "Shantanu;Devaki;Bheeshma;Ganga Devi;Devavrata;Devaki;Pandu purvaja",
+      "Krishna;Muchukunda;Kaalyavana;Matsya;Ranachhoda;Bhagawat 10 Skanda;Matsya",
+      "Arjuna;Drupada;Draupadi;Matsya-Bheda;Ghatotkacha;Swayamvara;Ghatotkacha",
+      "Ghatotkacha;Hidimba;Krishna;Bheema;Hidimbi;After Laakshaa Gruha;Krishna",
+      "Virat Raja;Bheeshma-Pratijnya;Bheema as Cook;Bruhannala;Kichaka;Bheeshma-Pratijnya;Ajnyaat-Vaas",
+      "Hanumaan;Sita;Chudamani;Kumbhakarna;Ashoka Vaatika;Sundarkaanda;Kumbhakarna",
     ];
+    let mapping = [];
+
+    response.map((eachItem, index) => {
+      let question = [];
+      let hint = "";
+      let answer = "";
+      question.push(eachItem.split(";")[0]);
+      question.push(eachItem.split(";")[1]);
+      question.push(eachItem.split(";")[2]);
+      question.push(eachItem.split(";")[3]);
+      question.push(eachItem.split(";")[4]);
+      hint = eachItem.split(";")[5];
+      answer = eachItem.split(";")[6];
+      mapping.push({
+        question: question,
+        hint: hint,
+        answer: answer,
+      });
+    });
+    return mapping;
   };
   random = (length) => {
-    const randomNo = Math.floor(Math.random() * length);
-    return randomNo;
+    return Math.floor(Math.random() * length);
   };
   // {this.includeButton(index, question)}
   displayMatrix = () => {
