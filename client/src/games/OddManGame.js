@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import AppMenu from "../common/AppMenu";
 import "../App.css";
 import "./MemoryGame.css";
 import { Button, Row, Col, Alert } from "reactstrap";
@@ -35,13 +36,13 @@ class OddManGame extends React.Component {
   };
   initialise = () => {
     let response = [
-      "Yudhishthira;Bheema;Arjuna;Nakula;Ravana;Ravana;Yuga",
+      "Yudhishthira;Bheema;Arjuna;Nakula;Ravana;Yuga;Ravana",
       "Prithvi;Jala;Tejas;Vaayu;Grahana Indriya;5 Tanmaatras;Grahana Indriya",
-      "Shantanu;Devaki;Bheeshma;Ganga Devi;Devavrata;Devaki;Pandu purvaja",
+      "Shantanu;Devaki;Bheeshma;Ganga Devi;Devavrata;Pandu purvaja;Devaki",
       "Krishna;Muchukunda;Kaalyavana;Matsya;Ranachhoda;Bhagawat 10 Skanda;Matsya",
       "Arjuna;Drupada;Draupadi;Matsya-Bheda;Ghatotkacha;Swayamvara;Ghatotkacha",
       "Ghatotkacha;Hidimba;Krishna;Bheema;Hidimbi;After Laakshaa Gruha;Krishna",
-      "Virat Raja;Bheeshma-Pratijnya;Bheema as Cook;Bruhannala;Kichaka;Bheeshma-Pratijnya;Ajnyaat-Vaas",
+      "Virat Raja;Bheeshma-Pratijnya;Bheema as Cook;Bruhannala;Kichaka;Ajnyaat-Vaas;Bheeshma-Pratijnya",
       "Hanumaan;Sita;Chudamani;Kumbhakarna;Ashoka Vaatika;Sundarkaanda;Kumbhakarna",
     ];
     let mapping = [];
@@ -160,6 +161,7 @@ class OddManGame extends React.Component {
     }
     return (
       <div>
+        <AppMenu></AppMenu>
         <h3 className="header"> Find Odd Man Out</h3>
         <div className="arrangeButtons">
           <Row>Score: (No. of right answers): {score}</Row>

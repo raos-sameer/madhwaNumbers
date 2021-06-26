@@ -3,6 +3,7 @@ import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
 import { Button, Row, Col, Alert } from "reactstrap";
+import AppMenu from "../common/AppMenu";
 
 class MemoryGame extends React.Component {
   state = {
@@ -169,6 +170,7 @@ class MemoryGame extends React.Component {
     const { score, showWinnerText } = this.state;
     return (
       <div>
+        <AppMenu></AppMenu>
         <h3 className="header"> Memory Game</h3>
         <div className="arrangeButtons">
           <Row>Score: (No. of clicks): {score}</Row>

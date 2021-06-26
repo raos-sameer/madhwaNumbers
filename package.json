@@ -21,6 +21,8 @@
   "license": "ISC",
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.19.2",
     "concurrently": "^5.2.0",
     "cors": "^2.8.5",

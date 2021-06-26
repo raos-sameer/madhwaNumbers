@@ -75,6 +75,7 @@ class HomePage extends React.Component {
       <div>
         <AppMenu></AppMenu>
         <p />
+        <div>Sameer</div>
         <DetailedPage
           displayList={this.displayList(questionList)}
           showDetails={showDetails}

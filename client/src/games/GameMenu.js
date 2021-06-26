@@ -1,18 +1,27 @@
 import React from "react";
 import axios from "axios";
 import "../App.css";
-import { Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import {
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  ButtonGroup,
+  Button,
+} from "reactstrap";
 import AppMenu from "../common/AppMenu";
 import MemoryGame from "./MemoryGame";
 import OddManGame from "./OddManGame";
+import TimerGame from "./TimerGame";
 
 class GameMenu extends React.Component {
   state = {
     showMemoryGame: false,
     showOddManGame: false,
+    showTimerGame: false,
   };
   render() {
-    let { showMemoryGame, showOddManGame } = this.state;
+    let { showMemoryGame, showOddManGame, showTimerGame } = this.state;
     const me = this;
     return (
       <div>
@@ -20,43 +29,16 @@ class GameMenu extends React.Component {
         <p />
         <div className="app">
           <Row>
-            {!showMemoryGame && !showOddManGame && (
+            {!showMemoryGame && !showOddManGame && !showTimerGame && (
               <Col sm={{ size: "auto", offset: 1 }}>
-                <ListGroup>
-                  <ListGroupItem
-                    key="Memory"
-                    color="success"
-                    tag="a"
-                    href=""
-                    onClick={(event) => {
-                      event.preventDefault();
-                      me.setState({
-                        showMemoryGame: true,
-                      });
-                    }}
-                  >
-                    Memory Game
-                  </ListGroupItem>
-                  <ListGroupItem
-                    key="OddManGame"
-                    color="success"
-                    tag="a"
-                    href=""
-                    onClick={(event) => {
-                      event.preventDefault();
-                      me.setState({
-                        showMemoryGame: false,
-                        showOddManGame: true,
-                      });
-                    }}
-                  >
-                    Find Odd-Man Out
-                  </ListGroupItem>
-                </ListGroup>
+                <ButtonGroup>
+                  <Button href="/memory">Memory Game</Button>
+                  <Button href="/oddman">Odd man Game</Button>
+                  <Button href="/timer">Timer Game</Button>
+                  <Button href="/quiz">Quiz Game</Button>
+                </ButtonGroup>
               </Col>
             )}
-            {showMemoryGame && <MemoryGame></MemoryGame>}
-            {showOddManGame && <OddManGame></OddManGame>}
           </Row>
         </div>
       </div>
