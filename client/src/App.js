@@ -9,14 +9,15 @@ import MemoryGame from "./games/MemoryGame";
 import OddManGame from "./games/OddManGame";
 import TimerGame from "./games/TimerGame";
 import QuizGame from "./games/QuizGame";
-
+import MenuPage from "./Main/Menu";
+import "semantic-ui-css/semantic.min.css";
 class App extends React.Component {
   render() {
     return (
       <div>
         <Router>
           <Switch>
-            <Route path="/" exact={true} component={HomePage} />
+            <Route path="/" exact={true} component={MenuPage} />
             <Route path="/detail" exact={true} component={DetailedPage} />
             <Route path="/games" exact={true} component={GameMenu} />
             <Route path="/addGameQuestion" exact={true} component={OtherPage} />
