@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, Menu } from "semantic-ui-react";
+import {
+  Dropdown,
+  Menu,
+  Segment,
+  Dimmer,
+  Loader,
+  Image,
+} from "semantic-ui-react";
 import DetailedPage from "./DetailedPage";
+import src from "../images/logo.svg";
 const MenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [showOutput, setShowOutput] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const [userSelection, setUserSelection] = useState("");
+  const [userSelectedHeader, setUserSelectedHeader] = useState("");
   const [detailedOutput, setDetailedOutput] = useState({});
   useEffect(() => {
     getMenuItems();
@@ -21,18 +31,22 @@ const MenuPage = () => {
         "/api/faqSpecificAnswer?code=" + userSelection
       );
       const body = await response.json();
-      console.log(body);
+      setShowLoader(false);
       setDetailedOutput(body);
       setShowOutput(true);
     }
   };
   const handleClick = (event, data) => {
-    console.log("event::", event, data);
+    setShowLoader(true);
     setUserSelection(data.name);
+    setUserSelectedHeader(data.children);
   };
   return (
     <React.Fragment>
       <Menu inverted color="blue" size="large">
+        <Menu.Item>
+          <Image src={src} size="mini" />
+        </Menu.Item>
         <Dropdown text="Categories" pointing className="link item">
           <Dropdown.Menu>
             {menuItems.map(({ question, code }) => (
@@ -42,41 +56,29 @@ const MenuPage = () => {
             ))}
           </Dropdown.Menu>
         </Dropdown>
+        <Dropdown text="Games" pointing className="link item">
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleClick}>Memory Game</Dropdown.Item>
+            <Dropdown.Item onClick={handleClick}>
+              Find the odd man out
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Menu>
-      {showOutput && <DetailedPage detailedOutput={detailedOutput} />}
+      {showOutput && (
+        <DetailedPage
+          userSelectedHeader={userSelectedHeader}
+          detailedOutput={detailedOutput}
+        />
+      )}
+      {showLoader && (
+        <Segment>
+          <Dimmer active inverted>
+            <Loader size="large">Loading</Loader>
+          </Dimmer>
+        </Segment>
+      )}
     </React.Fragment>
-    // menuItems.map(<Menu inverted color="blue" size="large">
-    //   <Menu.Item>Home</Menu.Item>
-    //   <Dropdown text="Shopping" pointing className="link item">
-    //     <Dropdown.Menu>
-    //       <Dropdown.Header>Categories</Dropdown.Header>
-    //       <Dropdown.Item>
-    //         <Dropdown text="Clothing">
-    //           <Dropdown.Menu>
-    //             <Dropdown.Header>Mens</Dropdown.Header>
-    //             <Dropdown.Item>Shirts</Dropdown.Item>
-    //             <Dropdown.Item>Pants</Dropdown.Item>
-    //             <Dropdown.Item>Jeans</Dropdown.Item>
-    //             <Dropdown.Item>Shoes</Dropdown.Item>
-    //             <Dropdown.Divider />
-    //             <Dropdown.Header>Womens</Dropdown.Header>
-    //             <Dropdown.Item>Dresses</Dropdown.Item>
-    //             <Dropdown.Item>Shoes</Dropdown.Item>
-    //             <Dropdown.Item>Bags</Dropdown.Item>
-    //           </Dropdown.Menu>
-    //         </Dropdown>
-    //       </Dropdown.Item>
-    //       <Dropdown.Item>Home Goods</Dropdown.Item>
-    //       <Dropdown.Item>Bedroom</Dropdown.Item>
-    //       <Dropdown.Divider />
-    //       <Dropdown.Header>Order</Dropdown.Header>
-    //       <Dropdown.Item>Status</Dropdown.Item>
-    //       <Dropdown.Item>Cancellations</Dropdown.Item>
-    //     </Dropdown.Menu>
-    //   </Dropdown>
-    //   <Menu.Item>Forums</Menu.Item>
-    //   <Menu.Item>Contact Us</Menu.Item>
-    // </Menu>
   );
 };
 export default MenuPage;
