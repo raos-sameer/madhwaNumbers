@@ -9,9 +9,12 @@ import {
 } from "semantic-ui-react";
 import DetailedPage from "./DetailedPage";
 import src from "../images/logo.svg";
+import Memory from "../Game/Memory";
+import MemoryGame from "../games/MemoryGame";
 const MenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [showOutput, setShowOutput] = useState(false);
+  const [showInfoOutput, setShowInfoOutput] = useState(false);
+  const [showGameOutput, setShowGameOutput] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [userSelection, setUserSelection] = useState("");
   const [userSelectedHeader, setUserSelectedHeader] = useState("");
@@ -33,13 +36,19 @@ const MenuPage = () => {
       const body = await response.json();
       setShowLoader(false);
       setDetailedOutput(body);
-      setShowOutput(true);
+      setShowInfoOutput(true);
+      setShowGameOutput(false);
     }
   };
   const handleClick = (event, data) => {
     setShowLoader(true);
     setUserSelection(data.name);
     setUserSelectedHeader(data.children);
+  };
+  const handleGames = (event, data) => {
+    setUserSelectedHeader(data.children);
+    setShowInfoOutput(false);
+    setShowGameOutput(true);
   };
   return (
     <React.Fragment>
@@ -58,14 +67,16 @@ const MenuPage = () => {
         </Dropdown>
         <Dropdown text="Games" pointing className="link item">
           <Dropdown.Menu>
-            <Dropdown.Item onClick={handleClick}>Memory Game</Dropdown.Item>
-            <Dropdown.Item onClick={handleClick}>
+            <Dropdown.Item name="memory" onClick={handleGames}>
+              Memory Game
+            </Dropdown.Item>
+            <Dropdown.Item name="oddMan" onClick={handleGames}>
               Find the odd man out
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Menu>
-      {showOutput && (
+      {showInfoOutput && (
         <DetailedPage
           userSelectedHeader={userSelectedHeader}
           detailedOutput={detailedOutput}
@@ -78,6 +89,7 @@ const MenuPage = () => {
           </Dimmer>
         </Segment>
       )}
+      {showGameOutput && <MemoryGame userSelectedHeader={userSelectedHeader} />}
     </React.Fragment>
   );
 };

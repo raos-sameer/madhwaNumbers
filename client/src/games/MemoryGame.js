@@ -3,6 +3,8 @@ import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
 import { Button, Row, Col, Alert } from "reactstrap";
+import { Card, Header, Icon, Message, Label, Menu } from "semantic-ui-react";
+
 import AppMenu from "../common/AppMenu";
 
 class MemoryGame extends React.Component {
@@ -170,10 +172,16 @@ class MemoryGame extends React.Component {
     const { score, showWinnerText } = this.state;
     return (
       <div>
-        <AppMenu></AppMenu>
-        <h3 className="header"> Memory Game</h3>
+        <Header as="h2" color="teal">
+          <Icon name="game" />
+          <Header.Content>Memory Game</Header.Content>
+        </Header>
         <div className="arrangeButtons">
-          <Row>Score: (No. of clicks): {score}</Row>
+          <Row>
+            <Label size="medium" color="brown" style={{ marginBottom: "3%" }}>
+              Score : {score}
+            </Label>
+          </Row>
           <Row>{this.displayMatrix()}</Row>
           {showWinnerText && (
             <Row>
