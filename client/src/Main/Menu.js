@@ -11,6 +11,8 @@ import DetailedPage from "./DetailedPage";
 import src from "../images/logo.svg";
 import Memory from "../Game/Memory";
 import MemoryGame from "../games/MemoryGame";
+import OddManGame from "../games/OddManGame";
+import TimerGame from "../games/TimerGame";
 const MenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [showInfoOutput, setShowInfoOutput] = useState(false);
@@ -46,7 +48,8 @@ const MenuPage = () => {
     setUserSelectedHeader(data.children);
   };
   const handleGames = (event, data) => {
-    setUserSelectedHeader(data.children);
+    setUserSelectedHeader(data.name);
+    console.log(data);
     setShowInfoOutput(false);
     setShowGameOutput(true);
   };
@@ -73,6 +76,9 @@ const MenuPage = () => {
             <Dropdown.Item name="oddMan" onClick={handleGames}>
               Find the odd man out
             </Dropdown.Item>
+            <Dropdown.Item name="timer" onClick={handleGames}>
+              Timer Game
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Menu>
@@ -89,7 +95,15 @@ const MenuPage = () => {
           </Dimmer>
         </Segment>
       )}
-      {showGameOutput && <MemoryGame userSelectedHeader={userSelectedHeader} />}
+      {userSelectedHeader === "memory" && (
+        <MemoryGame userSelectedHeader={userSelectedHeader} />
+      )}
+      {userSelectedHeader === "oddMan" && (
+        <OddManGame userSelectedHeader={userSelectedHeader} />
+      )}
+      {userSelectedHeader === "timer" && (
+        <TimerGame userSelectedHeader={userSelectedHeader} />
+      )}
     </React.Fragment>
   );
 };

@@ -176,19 +176,21 @@ class MemoryGame extends React.Component {
           <Icon name="game" />
           <Header.Content>Memory Game</Header.Content>
         </Header>
-        <div className="arrangeButtons">
-          <Row>
-            <Label size="medium" color="brown" style={{ marginBottom: "3%" }}>
-              Score : {score}
-            </Label>
-          </Row>
+        <Message style={{ marginLeft: "4%", marginRight: "14%" }}>
+          <Label size="medium" color="brown" style={{ marginBottom: "3%" }}>
+            Score : {score}
+          </Label>
+
           <Row>{this.displayMatrix()}</Row>
           {showWinnerText && (
             <Row>
-              <Alert color="danger">Congratulations ---- Winner</Alert>
+              <Header as="h2" color="olive">
+                <Icon name="winner" />
+                <Header.Content>Congratulations! You Win</Header.Content>
+              </Header>
             </Row>
           )}
-        </div>
+        </Message>
       </div>
     );
   }

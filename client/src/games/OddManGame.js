@@ -4,6 +4,7 @@ import AppMenu from "../common/AppMenu";
 import "../App.css";
 import "./MemoryGame.css";
 import { Button, Row, Col, Alert } from "reactstrap";
+import { Card, Header, Icon, Message, Label, Menu } from "semantic-ui-react";
 
 class OddManGame extends React.Component {
   state = {
@@ -161,10 +162,14 @@ class OddManGame extends React.Component {
     }
     return (
       <div>
-        <AppMenu></AppMenu>
-        <h3 className="header"> Find Odd Man Out</h3>
-        <div className="arrangeButtons">
-          <Row>Score: (No. of right answers): {score}</Row>
+        <Header as="h2" color="teal">
+          <Icon name="game" />
+          <Header.Content>Find The Odd Man Out</Header.Content>
+        </Header>
+        <Message style={{ marginLeft: "4%", marginRight: "14%" }}>
+          <Label size="medium" color="brown" style={{ marginBottom: "3%" }}>
+            Score: (No. of right answers): {score}
+          </Label>
           <Row>{this.displayMatrix()}</Row>
           <Row>{this.showHint()}</Row>
           {disableAll && (
@@ -174,7 +179,7 @@ class OddManGame extends React.Component {
               </Button>
             </Row>
           )}
-        </div>
+        </Message>
       </div>
     );
   }
