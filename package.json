@@ -32,7 +32,6 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
-    "react-countdown": "^2.3.2",
     "react-dom": "^16.13.1",
     "reactstrap": "^8.5.1"
   }
