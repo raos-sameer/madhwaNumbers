@@ -1,18 +1,9 @@
-import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import {
-  Table,
-  Message,
   Icon,
   Header,
-  Image,
   Container,
   Button,
-  Modal,
-  Divider,
-  Form,
-  Grid,
-  Segment,
 } from "semantic-ui-react";
 import {findRandomNumber} from '../utils/helper'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
@@ -46,7 +37,7 @@ function TimerGame() {
     <React.Fragment>
       <Header as="h2" color="teal">
         <Icon name="game" />
-        <Header.Content>Timer</Header.Content>
+        <Header.Content>Question and Answer</Header.Content>
       </Header>
       <Container>
         {!startGame && <Button primary onClick={handleClick}>Start Game</Button>}

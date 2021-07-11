@@ -13,6 +13,7 @@ import Memory from "../Game/Memory";
 import MemoryGame from "../games/MemoryGame";
 import OddManGame from "../games/OddManGame";
 import TimerGame from "../games/TimerGame";
+import WSTH from "../games/WSTH";
 const MenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [showInfoOutput, setShowInfoOutput] = useState(false);
@@ -76,8 +77,11 @@ const MenuPage = () => {
             <Dropdown.Item name="oddMan" onClick={handleGames}>
               Find the odd man out
             </Dropdown.Item>
-            <Dropdown.Item name="timer" onClick={handleGames}>
-              Timer Game
+            <Dropdown.Item name="qna" onClick={handleGames}>
+              Question and Answer
+            </Dropdown.Item>
+            <Dropdown.Item name="wsth" onClick={handleGames}>
+              WSTH
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -101,8 +105,11 @@ const MenuPage = () => {
       {userSelectedHeader === "oddMan" && (
         <OddManGame userSelectedHeader={userSelectedHeader} />
       )}
-      {userSelectedHeader === "timer" && (
+      {userSelectedHeader === "qna" && (
         <TimerGame userSelectedHeader={userSelectedHeader} />
+      )}
+      {userSelectedHeader === "wsth" && (
+        <WSTH userSelectedHeader={userSelectedHeader} />
       )}
     </React.Fragment>
   );
