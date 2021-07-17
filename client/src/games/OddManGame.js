@@ -162,6 +162,7 @@ class OddManGame extends React.Component {
     }
     return (
       <div>
+        <AppMenu />
         <Header as="h2" color="teal">
           <Icon name="game" />
           <Header.Content>Find The Odd Man Out</Header.Content>

@@ -7,6 +7,7 @@ import {
 } from "semantic-ui-react";
 import {findRandomNumber} from '../utils/helper'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import AppMenu from "../common/AppMenu";
 function TimerGame() {
   const [startGame, setStartGame] = useState(false);
   const [allQuestions, setAllQuestions] = useState([]);
@@ -35,6 +36,7 @@ function TimerGame() {
 
   return (
     <React.Fragment>
+      <AppMenu />
       <Header as="h2" color="teal">
         <Icon name="game" />
         <Header.Content>Question and Answer</Header.Content>

@@ -3,7 +3,8 @@ import axios from "axios";
 import "../App.css";
 import "./MemoryGame.css";
 import { Button, Row, Col, Alert } from "reactstrap";
-import { Card, Header, Icon, Message, Label, Menu } from "semantic-ui-react";
+import { Card, Header, Icon, Message, Label } from "semantic-ui-react";
+import MenuPage from "../Main/Menu";
 
 import AppMenu from "../common/AppMenu";
 
@@ -172,6 +173,7 @@ class MemoryGame extends React.Component {
     const { score, showWinnerText } = this.state;
     return (
       <div>
+        <AppMenu />
         <Header as="h2" color="teal">
           <Icon name="game" />
           <Header.Content>Memory Game</Header.Content>

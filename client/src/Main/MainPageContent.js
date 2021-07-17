@@ -19,7 +19,7 @@ const MainPageContent = (props) => (
       </Card.Content>
       <Card.Content extra>
       <div className="ui two buttons">
-          <Button fluid basic color="green" onClick={()=> props.setUserSelectedHeader("memory")}>
+          <Button as="a" href="/memory" fluid basic color="green">
             Play
           </Button>
         </div>
@@ -36,7 +36,7 @@ const MainPageContent = (props) => (
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button fluid basic color="green" onClick={()=> props.setUserSelectedHeader("oddMan")}>
+          <Button  as="a" href="/oddMan"  fluid basic color="green">
             Play
           </Button>
         </div>
@@ -48,12 +48,12 @@ const MainPageContent = (props) => (
         <Card.Header>Simple Timer Game</Card.Header>
         <Card.Meta>You have only 10 seconds!</Card.Meta>
         <Card.Description>
-          You will be given 10 seconds to answer the question. Are you ready for this challenge?!
+          You will have 10 seconds to answer. Ready for this challenge?
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green" onClick={()=> props.setUserSelectedHeader("qna")}>
+          <Button  as="a" href="/qna"  basic color="green">
             Play
           </Button>
         </div>
@@ -70,7 +70,7 @@ const MainPageContent = (props) => (
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green" onClick={()=> props.setUserSelectedHeader("wsth")}>
+          <Button  as="a" href="/wsth"  basic color="green">
             Play
           </Button>
         </div>

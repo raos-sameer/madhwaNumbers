@@ -7,6 +7,7 @@ import {
 } from "semantic-ui-react";
 import {findRandomNumber} from '../utils/helper'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import AppMenu from "../common/AppMenu";
 
 const WSTH = () => {
 
@@ -36,6 +37,7 @@ const [key, setKey] = useState(0);
     
       return (
         <React.Fragment>
+          <AppMenu />
           <Header as="h2" color="teal">
             <Icon name="game" />
             <Header.Content>Who Said To Home</Header.Content>

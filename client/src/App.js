@@ -8,9 +8,9 @@ import OtherPage from "./OtherPage";
 import MemoryGame from "./games/MemoryGame";
 import OddManGame from "./games/OddManGame";
 import TimerGame from "./games/TimerGame";
-import QuizGame from "./games/QuizGame";
 import MenuPage from "./Main/Menu";
 import "semantic-ui-css/semantic.min.css";
+import WSTH from "./games/WSTH";
 class App extends React.Component {
   render() {
     return (
@@ -24,8 +24,8 @@ class App extends React.Component {
             <Route path="/others" exact={true} component={QuestionSet} />
             <Route path="/memory" exact={true} component={MemoryGame} />
             <Route path="/oddman" exact={true} component={OddManGame} />
-            <Route path="/timer" exact={true} component={TimerGame} />
-            <Route path="/quiz" exact={true} component={QuizGame} />
+            <Route path="/qna" exact={true} component={TimerGame} />
+            <Route path="/wsth" exact={true} component={WSTH} />
           </Switch>
         </Router>
       </div>
