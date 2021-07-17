@@ -6,6 +6,7 @@ import {
   Dimmer,
   Loader,
   Image,
+  Message,
 } from "semantic-ui-react";
 import DetailedPage from "./DetailedPage";
 import src from "../images/logo.svg";
@@ -14,6 +15,7 @@ import MemoryGame from "../games/MemoryGame";
 import OddManGame from "../games/OddManGame";
 import TimerGame from "../games/TimerGame";
 import WSTH from "../games/WSTH";
+import MainPageContent from "./MainPageContent";
 const MenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [showInfoOutput, setShowInfoOutput] = useState(false);
@@ -111,6 +113,10 @@ const MenuPage = () => {
       {userSelectedHeader === "wsth" && (
         <WSTH userSelectedHeader={userSelectedHeader} />
       )}
+
+      <Message>
+        <MainPageContent />
+      </Message>
     </React.Fragment>
   );
 };
