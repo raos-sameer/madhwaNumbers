@@ -6,7 +6,7 @@ import memory from "../images/memory.svg";
 import timer from "../images/timer.svg";
 const MainPageContent = () => (
     <>
-  <Card.Group itemsPerRow={3}>
+  <Card.Group itemsPerRow={2}>
     <Card>
       <Card.Content>
       <Image src={memory} size="mini" />
