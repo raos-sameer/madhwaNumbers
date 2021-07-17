@@ -4,7 +4,7 @@ import binoculars from "../images/binoculars.svg";
 import wsth from "../images/wsth.svg";
 import memory from "../images/memory.svg";
 import timer from "../images/timer.svg";
-const MainPageContent = () => (
+const MainPageContent = (props) => (
     <>
   <Card.Group itemsPerRow={2}>
     <Card>
@@ -13,14 +13,13 @@ const MainPageContent = () => (
         <Card.Header>Memory Game</Card.Header>
         <Card.Meta>Learn and Play!</Card.Meta>
         <Card.Description>
-          You will be prompted with many closed Cards. Open anyone of the closed
-          cards and it will reveal a question. Match the corresponding correct
+          Open anyone of the closed cards and it will reveal a question. Match the corresponding correct
           card.
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
       <div className="ui two buttons">
-          <Button fluid basic color="green">
+          <Button fluid basic color="green" onClick={()=> props.setUserSelectedHeader("memory")}>
             Play
           </Button>
         </div>
@@ -37,7 +36,7 @@ const MainPageContent = () => (
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button fluid basic color="green">
+          <Button fluid basic color="green" onClick={()=> props.setUserSelectedHeader("oddMan")}>
             Play
           </Button>
         </div>
@@ -54,7 +53,7 @@ const MainPageContent = () => (
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green">
+          <Button basic color="green" onClick={()=> props.setUserSelectedHeader("qna")}>
             Play
           </Button>
         </div>
@@ -66,12 +65,12 @@ const MainPageContent = () => (
         <Card.Header>Who said to whom</Card.Header>
         <Card.Meta>Do you know these famous lines?!</Card.Meta>
         <Card.Description>
-          Listening to stories is one thing when it takes courage to remember these statements from them. Up for this?!
+          Do you remember these statements. Up for this?!
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green">
+          <Button basic color="green" onClick={()=> props.setUserSelectedHeader("wsth")}>
             Play
           </Button>
         </div>

@@ -114,9 +114,9 @@ const MenuPage = () => {
         <WSTH userSelectedHeader={userSelectedHeader} />
       )}
 
-      <Message>
-        <MainPageContent />
-      </Message>
+      {userSelectedHeader === "" && <Message>
+        <MainPageContent setUserSelectedHeader={setUserSelectedHeader} />
+      </Message>}
     </React.Fragment>
   );
 };
