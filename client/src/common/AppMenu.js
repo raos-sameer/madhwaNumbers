@@ -1,54 +1,22 @@
 import React, { useEffect, useState } from "react";
-import {
-  Dropdown,
-  Menu,
-  Segment,
-  Dimmer,
-  Loader,
-  Image,
-  Message,
-} from "semantic-ui-react";
+import { Dropdown, Menu, Image } from "semantic-ui-react";
 import src from "../images/logo.svg";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 const AppMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
 
-  const [showInfoOutput, setShowInfoOutput] = useState(false);
-  const [showGameOutput, setShowGameOutput] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-  const [userSelection, setUserSelection] = useState("");
-  const [userSelectedHeader, setUserSelectedHeader] = useState("");
-  const [detailedOutput, setDetailedOutput] = useState({});
-  
-  
-  const handleClick = (event, data) => {
-    setShowLoader(true);
-    setUserSelection(data.name);
-    setUserSelectedHeader(data.children);
-  };
-  const handleGames = (event, data) => {
-    setUserSelectedHeader(data.name);
-    console.log(data);
-    setShowInfoOutput(false);
-    setShowGameOutput(true);
-  };
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories, shallowEqual);
+
   useEffect(() => {
     getMenuItems();
-  }, [userSelection]);
+  }, []);
   const getMenuItems = async () => {
-    if (userSelection === "") {
+    if (Object.keys(categories).length === 0) {
       const response = await fetch("/api/faqQuestionList");
       const body = await response.json();
-
+      dispatch({ type: "CATEGORY_LIST", payload: body });
       setMenuItems(body);
-    } else {
-      const response = await fetch(
-        "/api/faqSpecificAnswer?code=" + userSelection
-      );
-      const body = await response.json();
-      setShowLoader(false);
-      setDetailedOutput(body);
-      setShowInfoOutput(true);
-      setShowGameOutput(false);
     }
   };
   return (
@@ -60,7 +28,7 @@ const AppMenu = () => {
         <Dropdown text="Categories" pointing className="link item">
           <Dropdown.Menu>
             {menuItems.map(({ question, code }) => (
-              <Dropdown.Item name={code} onClick={handleClick}>
+              <Dropdown.Item as="a" href={"/detailed?code=" + code}>
                 {question}
               </Dropdown.Item>
             ))}

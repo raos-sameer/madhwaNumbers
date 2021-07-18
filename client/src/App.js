@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./landing/HomePage";
-import DetailedPage from "./landing/DetailedPage";
+import DetailedPage from "./Main/DetailedPage";
 import GameMenu from "./games/GameMenu";
 import QuestionSet from "./QuestionSet";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -18,7 +18,7 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route path="/" exact={true} component={MenuPage} />
-            <Route path="/detail" exact={true} component={DetailedPage} />
+            <Route path="/detailed" component={DetailedPage} />
             <Route path="/games" exact={true} component={GameMenu} />
             <Route path="/addGameQuestion" exact={true} component={OtherPage} />
             <Route path="/others" exact={true} component={QuestionSet} />

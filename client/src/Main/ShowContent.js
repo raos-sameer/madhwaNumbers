@@ -1,17 +1,22 @@
 import React from "react";
-import { Message, List } from "semantic-ui-react";
+import { Message, List, Table } from "semantic-ui-react";
 const ShowContent = (props) => {
   return (
     <Message>
-      <List animated size="big">
-        {props.contenInfo.map(({ itemName }) => (
-          <List.Item>
-            <List.Content>
-              <List.Header>{itemName}</List.Header>
-            </List.Content>
-          </List.Item>
-        ))}
-      </List>
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {props.contentInfo.map(({ itemName }) => (
+            <Table.Row key={itemName}>
+              <Table.Cell>{itemName}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
     </Message>
   );
 };

@@ -1,37 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion, Menu, Input, Header, Icon } from "semantic-ui-react";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 import ShowContent from "./ShowContent";
+import AppMenu from "../common/AppMenu";
 
-const DetailedPage = (props) => {
-  const [activeItem, setActiveItem] = useState(
-    props.detailedOutput[0].category[0].title
-  );
+const DetailedPage = () => {
+  const [detailedOutput, setDetailedOutput] = useState({});
   const [showContent, setShowContent] = useState(false);
-  const [contenInfo, setContentInfo] = useState(
-    props.detailedOutput[0].category[0].subCategory
-  );
+  const [contentInfo, setContentInfo] = useState("");
+  const [header, setHeader] = useState("");
+  const { search } = useLocation();
+  const values = queryString.parse(search);
+  console.log(values.code); // "top"
+  useEffect(async () => {
+    const response = await fetch("/api/faqSpecificAnswer?code=" + values.code);
+    const body = await response.json();
+    console.log(body[0]);
+    setHeader(body[0].question);
+    setDetailedOutput(body[0].category);
+  }, []);
   return (
     <React.Fragment>
+      <AppMenu />
       <Header as="h2" color="teal">
         <Icon name="list" />
-        <Header.Content>{props.userSelectedHeader}</Header.Content>
+        <Header.Content>{header}</Header.Content>
       </Header>
       <Menu pointing>
-        {props.detailedOutput[0].category.map(({ title }, index) => (
-          <Menu.Item
-            name={title}
-            active={activeItem === title}
-            onClick={() => {
-              setShowContent(true);
-              setActiveItem(title);
-              setContentInfo(
-                props.detailedOutput[0].category[index].subCategory
-              );
-            }}
-          />
-        ))}
+        {detailedOutput.length > 0 &&
+          detailedOutput.map(({ title }, index) => (
+            <Menu.Item
+              name={title}
+              //active={activeItem === title}
+              onClick={() => {
+                setShowContent(true);
+                //setActiveItem(title);
+                setContentInfo(detailedOutput[index].subCategory);
+              }}
+            />
+          ))}
       </Menu>
-      {showContent && <ShowContent contenInfo={contenInfo} />}
+      {showContent && <ShowContent contentInfo={contentInfo} />}
     </React.Fragment>
   );
 };

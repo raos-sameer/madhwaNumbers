@@ -1,18 +1,8 @@
 import React from "react";
 import axios from "axios";
 import "../App.css";
-import {
-  Row,
-  Col,
-  ListGroup,
-  ListGroupItem,
-  ButtonGroup,
-  Button,
-} from "reactstrap";
+import { Row, Col, ButtonGroup, Button } from "reactstrap";
 import AppMenu from "../common/AppMenu";
-import MemoryGame from "./MemoryGame";
-import OddManGame from "./OddManGame";
-import TimerGame from "./TimerGame";
 
 class GameMenu extends React.Component {
   state = {
@@ -22,7 +12,6 @@ class GameMenu extends React.Component {
   };
   render() {
     let { showMemoryGame, showOddManGame, showTimerGame } = this.state;
-    const me = this;
     return (
       <div>
         <AppMenu></AppMenu>
