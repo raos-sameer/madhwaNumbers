@@ -50,6 +50,16 @@ const AppMenu = () => {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+        <Menu.Item position="right">
+          <Dropdown text="Change Language (Upcoming)" pointing>
+            <Dropdown.Menu>
+              <Dropdown.Item>English</Dropdown.Item>
+              <Dropdown.Item>देवनागरी</Dropdown.Item>
+              <Dropdown.Item>ಕನ್ನಡ</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Item>
+        <Menu.Menu></Menu.Menu>
       </Menu>
     </div>
   );
